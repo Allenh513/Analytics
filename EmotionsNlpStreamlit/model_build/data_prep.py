@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
-import joblib
+import pickle
 import json
 
 
@@ -45,7 +45,7 @@ def data_formatter():
     train_features = tfidf_train.fit_transform(df_train['TEXT']).toarray()
     val_features = tfidf_val.fit_transform(df_val['TEXT']).toarray()
     #serialize Vectorizer for use in app
-    joblib.dump(tfidf_train,'../models/vectorizer.pkl')
+    pickle.dump(tfidf_train,open('../models/vectorizer.pkl','wb'))
 
     train_class = df_train.CLASS_ID
     val_class = df_val.CLASS_ID

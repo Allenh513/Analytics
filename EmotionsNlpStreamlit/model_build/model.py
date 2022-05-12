@@ -3,7 +3,7 @@ import data_prep
 from sklearn.model_selection import  train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
 from datetime import datetime
-import joblib
+import pickle
 
 data = data_prep.data_formatter()
 
@@ -27,6 +27,6 @@ cr = classification_report(y_test, y_pred,
                            target_names=data['TRAIN_DF']['CLASS'].unique())
 
 
-joblib.dump(svc, '../models/{}.pkl'.format(svc.__class__.__name__))
+pickle.dump(svc, open('../models/{}.pkl'.format(svc.__class__.__name__), 'wb'))
 
 

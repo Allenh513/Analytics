@@ -1,10 +1,10 @@
 import streamlit as st
-import joblib
+import pickle
 import json
 import pandas as pd
 
-model = joblib.load(open('./models/LinearSVC.pkl', 'rb'))
-vec = joblib.load(open('./models/vectorizer.pkl', 'rb'))
+model = pickle.load(open('./models/LinearSVC.pkl', 'rb'))
+vec = pickle.load(open('./models/vectorizer.pkl', 'rb'))
 val = pd.read_csv('./data/val.txt', sep=';')
 val.columns = ['TEXT','EMOTION']
 

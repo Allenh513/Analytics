@@ -1,8 +1,8 @@
-FROM python:3.7
+FROM python:3.10
 WORKDIR /app
-COPY requirements.txt requirements.txt
+COPY requirements.txt .
 RUN pip3 install -r requirements.txt
-EXPOSE 8051
+EXPOSE 8501
 COPY . /app
 ENTRYPOINT [ "streamlit", "run" ]
-CMD ["app.py"]
+CMD ["app/app.py"]
