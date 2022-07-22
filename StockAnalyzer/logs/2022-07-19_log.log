@@ -1,0 +1,143 @@
+ERROR:root:An issue occured on 2022-07-19: Length of values (66) does not match length of index (154)
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:28:51] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:28:51] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:28:51] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:28:51] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:29:15] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:29:15] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:29:17] "POST /_dash-update-component HTTP/1.1" 200 -
+ERROR:root:An issue occured on 2022-07-19: Length of values (66) does not match length of index (154)
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:00] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:01] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:01] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:01] "POST /_dash-update-component HTTP/1.1" 200 -
+ERROR:root:An issue occured on 2022-07-19: Length of values (66) does not match length of index (154)
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:42] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:42] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:42] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:42] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:44] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:39:47] "POST /_dash-update-component HTTP/1.1" 200 -
+ERROR:root:An issue occured on 2022-07-19: Length of values (66) does not match length of index (154)
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:44:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:44:45] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:44:45] "POST /_dash-update-component HTTP/1.1" 200 -
+ERROR:main:Exception on /_dash-update-component [POST]
+Traceback (most recent call last):
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\dash\dash.py", line 1372, in dispatch
+    response.set_data(func(*args, outputs_list=outputs_list))
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\dash\_callback.py", line 151, in add_context
+    output_value = func(*func_args, **func_kwargs)  # %% callback invoked %%
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\pages\main.py", line 141, in update_chart
+    chart = tc.main_trend(df=data,tickers=t, has_model=True, model=MODEL)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\graphs\trend_components.py", line 9, in main_trend
+    go.Candlestick(
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\plotly\graph_objs\_candlestick.py", line 1737, in __init__
+    self["decreasing"] = _v
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\plotly\basedatatypes.py", line 4851, in __setitem__
+    self._set_compound_prop(prop, value)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\plotly\basedatatypes.py", line 5262, in _set_compound_prop
+    val = validator.validate_coerce(val, skip_invalid=self._skip_invalid)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\_plotly_utils\basevalidators.py", line 2469, in validate_coerce
+    self.raise_invalid_val(v)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\_plotly_utils\basevalidators.py", line 288, in raise_invalid_val
+    raise ValueError(
+ValueError: 
+    Invalid value of type 'builtins.str' received for the 'decreasing' property of candlestick
+        Received value: '#D55E00'
+
+    The 'decreasing' property is an instance of Decreasing
+    that may be specified as:
+      - An instance of :class:`plotly.graph_objs.candlestick.Decreasing`
+      - A dict of string/value properties that will be passed
+        to the Decreasing constructor
+
+        Supported dict properties:
+            
+            fillcolor
+                Sets the fill color. Defaults to a half-
+                transparent variant of the line color, marker
+                color, or marker line color, whichever is
+                available.
+            line
+                :class:`plotly.graph_objects.candlestick.decrea
+                sing.Line` instance or dict with compatible
+                properties
+
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:44:45] "[35m[1mPOST /_dash-update-component HTTP/1.1[0m" 500 -
+ERROR:root:An issue occured on 2022-07-19: Length of values (66) does not match length of index (154)
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:00] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:00] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:00] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:00] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "GET /_dash-layout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "GET /_dash-dependencies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "GET /_favicon.ico?v=2.4.1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "[36mGET /_dash-component-suites/dash/dcc/async-dropdown.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "[36mGET /_dash-component-suites/dash/dcc/async-graph.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "[36mGET /_dash-component-suites/dash/dash_table/async-highlight.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "[36mGET /_dash-component-suites/dash/dash_table/async-table.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "[36mGET /_dash-component-suites/dash/dcc/async-plotlyjs.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "[35m[1mPOST /_dash-update-component HTTP/1.1[0m" 204 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "POST /_dash-update-component HTTP/1.1" 200 -
+ERROR:main:Exception on /_dash-update-component [POST]
+Traceback (most recent call last):
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\dash\dash.py", line 1372, in dispatch
+    response.set_data(func(*args, outputs_list=outputs_list))
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\dash\_callback.py", line 151, in add_context
+    output_value = func(*func_args, **func_kwargs)  # %% callback invoked %%
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\pages\main.py", line 128, in update_chart
+    data = pd.read_json(data).T
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\pandas\util\_decorators.py", line 207, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\pandas\util\_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\pandas\io\json\_json.py", line 588, in read_json
+    json_reader = JsonReader(
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\pandas\io\json\_json.py", line 673, in __init__
+    data = self._get_data_from_filepath(filepath_or_buffer)
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\pandas\io\json\_json.py", line 710, in _get_data_from_filepath
+    self.handles = get_handle(
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\pandas\io\common.py", line 670, in get_handle
+    ioargs = _get_filepath_or_buffer(
+  File "C:\Users\Ahigg\PycharmProjects\StockAnalyzer\env\lib\site-packages\pandas\io\common.py", line 427, in _get_filepath_or_buffer
+    raise ValueError(msg)
+ValueError: Invalid file path or buffer object type: <class 'NoneType'>
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:21] "[35m[1mPOST /_dash-update-component HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:44] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:44] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:44] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Jul/2022 06:48:44] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:15:05] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:15:07] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:15:07] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:16:41] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:17:02] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:17:02] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:17:03] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:17:05] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:17:05] "POST /_dash-update-component HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Jul/2022 05:17:06] "POST /_dash-update-component HTTP/1.1" 200 -

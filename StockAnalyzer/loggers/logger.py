@@ -4,12 +4,12 @@ import os
 
 
 def logfile():
-    if not os.path.exists('../logs/{}_log.log'.format(dt.strftime(dt.now(),'%Y-%m-%d'))):
-        open('../logs/{}_log.log'.format(dt.strftime(dt.now(),'%Y-%m-%d')),'w')
+    if not os.path.exists('./logs/{}_log.log'.format(dt.strftime(dt.now(),'%Y-%m-%d'))):
+        open('./logs/{}_log.log'.format(dt.strftime(dt.now(),'%Y-%m-%d')),'w')
 
 def log(statement,level):
     logfile()
-    logging.basicConfig(filename='../logs/{}_log.log'.format(dt.strftime(dt.now(),'%Y-%m-%d')))
+    logging.basicConfig(filename='./logs/{}_log.log'.format(dt.strftime(dt.now(),'%Y-%m-%d')))
     if level == 'DEBUG':
         logging.debug(statement)
     elif level == 'WARN':

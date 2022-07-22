@@ -3,11 +3,12 @@ import pandas as pd
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.holtwinters.model import ExponentialSmoothing,TimeSeriesModel,SimpleExpSmoothing
 from statsmodels.tsa.seasonal import seasonal_decompose
-
+from sklearn.model_selection import train_test_split
 
 class LINEAR_FORECAST:
     def arima_forecast(self,p,d,q,data,period,forecast_n_periods,metric):
-        arima = ARIMA(endog=data,order=(p,d,q))
+        train, test = train_test_split(data, test_size=.2)
+        arima = ARIMA(endog=train,order=(p,d,q))
         fit_model = arima.fit()
         forecast = fit_model.forecast(steps=forecast_n_periods, alpha=0.05)
         f = pd.DataFrame(forecast)

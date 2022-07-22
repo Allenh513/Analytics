@@ -68,7 +68,56 @@ data_button = html.Div([
     ], className='mb-4'
 )
 
-controls = dbc.Card([ticker_area, period_dropdown, metric_dropdown, data_button], body=True,)
+trend_ml = html.Div([
+    html.Button(
+        'Apply',
+        id='butt-model-data',
+        n_clicks=0,
+        className='btn btn-outline-secondary'
+    ),
+    ], className='mb-4'
+)
+
+collapse = html.Div(
+    [
+        dbc.Button(
+            "Apply Modeling?",
+            id="collapse-button",
+            className="mb-3",
+            color="primary",
+            n_clicks=0,
+        ),
+        dbc.Collapse(
+            dbc.Card(
+                    [
+                    dcc.RadioItems(
+                        [
+                            'Simple Moving Average','ARIMA','Machine Learning'
+                        ],inline=True, id='radio-butt'
+                    ),
+
+                    html.Label(title='Time Steps',id='ma-lbl'),
+                    dbc.Input(id='ma_input',placeholder='Enter Number of Time Steps'),
+                    dcc.Dropdown(
+                        id='ml-select',
+                        placeholder='Select Model',
+                        options={
+                            'Random Forest':'Random Forest',
+                            'Linear Regression':'Linear Regression',
+                            'Neural Net':'Neural Net',
+                            'KNN':'KNN'
+                        }),
+                    trend_ml
+                ]
+            ),
+            id="collapse",
+            is_open=False,
+        ),
+
+    ]
+)
+
+controls = dbc.Card([ticker_area, period_dropdown, metric_dropdown, data_button,collapse], body=True,)
 
 table_trend_data = dash_table.DataTable(
         id="table-trend",

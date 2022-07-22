@@ -1,6 +1,6 @@
 from datetime import datetime as dt
 from loggers import logger as lg
-from dash import dcc, html, Input, Output, callback, long_callback, dash_table, State
+from dash import dcc, html, callback, long_callback, dash_table, State
 from dash.exceptions import PreventUpdate
 import dash_bootstrap_components as dbc
 import re
@@ -9,7 +9,7 @@ from graphs import trend_components as tc
 from dash_bootstrap_templates import ThemeChangerAIO
 from components.reusable import nav, controls, table_trend_data, table_balance_sheet
 import pandas as pd
-
+from dash_extensions.enrich import Output, Input
 header = html.H4(
     "Stock Analysis Dashboard", className="bg-primary text-white p-2 mb-2 text-center"
 )
@@ -18,7 +18,10 @@ header = html.H4(
 
 tab1 = dbc.Tab([
 
-    dcc.Graph(id="container-main-trend")
+    html.Div(
+        id='graph-div',
+        children=[dcc.Graph(id='main-graph')]
+    )
     ],label="Graph")
 tab2 = dbc.Tab([table_trend_data], label="Trend Data", className="p-4")
 tab3 = dbc.Tab([table_balance_sheet], label="Stock Info", className="p-4")
@@ -45,6 +48,15 @@ layout = dbc.Container(
     className="dbc",
 )
 
+@callback(
+    Output("collapse", "is_open"),
+    [Input("collapse-button", "n_clicks")],
+    [State("collapse", "is_open")],
+)
+def toggle_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open
 
 @callback(
     Output('session-data','data'),
@@ -52,10 +64,10 @@ layout = dbc.Container(
     Output('main-loader','className'),
     Input('butt-stock-data','n_clicks'),
     State('period-dropdown','value'),
-    State('tickers','value'),
-    State('metric-dropdown','value')
+    State('tickers','value')
+
 )
-def fetch_data(nclicks, period, tickers, metric):
+def fetch_data(nclicks, period, tickers):
     if nclicks in [0, None]:
         raise PreventUpdate
     else:
@@ -77,23 +89,57 @@ def fetch_data(nclicks, period, tickers, metric):
             except ValueError as e:
                 lg.log('An issue occured on {}: {}'.format(dt.strftime(dt.now(),'%Y-%m-%d'),e),'ERROR')
         data_trend = ticker_obj.download(period=period)
-        data_trend = data_trend[metric].to_json(orient='index')
+        data_trend = data_trend.to_json(orient='index')
         return data_trend, balance_sheet.to_json(orient='records'), str(nclicks)
 
 
 @callback(
-    Output('container-main-trend','figure'),
+    Output('ma_input','style'),
+    Input('radio-butt','value')
+)
+def toggle_element(state):
+    if state == 'Simple Moving Average' or state == 'ARIMA':
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
+
+@callback(
+    Output('ml-select','style'),
+    Input('radio-butt','value')
+)
+def toggle_element(state):
+    if state == 'Machine Learning':
+        return {'display': 'block'}
+    else:
+        return {'display': 'none'}
+
+@callback(
+    Output('main-graph','figure'),
     Input('session-data','data'),
+    Input('butt-model-data','n_clicks'),
     State('period-dropdown','value'),
     State('tickers','value'),
-    State('metric-dropdown','value')
+    State('ma_input','value'),
+    State('radio-butt','value'),
+    State('ml-select','value')
 )
-def update_chart(data, period, tickers, metric):
-    t = re.split(r"-|,|\n|\s+",tickers)
-    data = pd.read_json(data).T
-    title = '<b>{}</b><br>Over the last: {}'.format(metric, period)
-    chart = tc.main_trend(df=data,cols=t,title=title)
-    return chart
+def update_chart(data,nclicks, period, tickers,ma_input,type,ml):
+    if nclicks in [0, None]:
+        data = pd.read_json(data).T
+        t = re.split(r"-|,|\n|\s+", tickers)
+        title = '<b>Market Data</b><br>Over the last: {}'.format(period)
+        chart = tc.main_trend(df=data,tickers=t, has_model=False, model=None)
+        return chart
+    else:
+        MODEL = dict()
+        MODEL['TYPE'] = type
+        MODEL['MA_INPUT'] = ma_input
+        MODEL['ML'] = ml
+        data = pd.read_json(data).T
+        t = re.split(r"-|,|\n|\s+", tickers)
+        title = '<b>Market Data</b><br>Over the last: {}'.format(period)
+        chart = tc.main_trend(df=data,tickers=t, has_model=True, model=MODEL)
+        return chart
 
 @callback(
     Output('table-trend','data'),

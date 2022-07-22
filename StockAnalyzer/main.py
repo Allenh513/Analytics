@@ -1,13 +1,18 @@
 from dash import Dash, dcc, html, Input, Output, callback
 from pages import main
 import dash_bootstrap_components as dbc
+from dash_extensions.enrich import Output, DashProxy, Input, MultiplexerTransform
 from dash_bootstrap_templates import ThemeChangerAIO, template_from_url
 
 dbc_css = (
     "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates@V1.0.4/dbc.min.css"
 )
 
-app = Dash(__name__,external_stylesheets=[dbc.themes.DARKLY, dbc_css], suppress_callback_exceptions=True)
+app = DashProxy(__name__
+                ,external_stylesheets=[dbc.themes.DARKLY, dbc_css],
+                suppress_callback_exceptions=True,
+                transforms=[MultiplexerTransform()],
+                prevent_initial_callbacks=True)
 server = app.server
 
 app.layout = html.Div([
